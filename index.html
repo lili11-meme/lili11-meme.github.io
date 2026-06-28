@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>从3:1到7:1：五年高校专业数据里的人文位移</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-soft: #2c2c2c;
+    --muted: #6b6b6b;
+    --paper: #f6f1e7;
+    --paper-deep: #ece4d0;
+    --line: #d8cdb3;
+    --accent: #b3331d;
+    --accent-deep: #8a2415;
+    --gold: #b8923b;
+    --shadow: 0 1px 0 rgba(0,0,0,0.04), 0 8px 24px -12px rgba(40,30,10,0.18);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+    font-size: 17px;
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Paper texture */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      radial-gradient(rgba(120,90,40,0.05) 1px, transparent 1px),
+      radial-gradient(rgba(120,90,40,0.04) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1px 1px;
+    opacity: 0.6;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 56px 56px 96px;
+  }
+
+  /* ========== Masthead ========== */
+  .masthead {
+    border-top: 3px double var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 14px 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Noto Sans SC", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .masthead .brand { font-weight: 700; letter-spacing: 0.32em; }
+  .masthead .meta { color: var(--muted); }
+
+  /* ========== Title block ========== */
+  .title-block {
+    text-align: center;
+    margin: 64px auto 36px;
+    max-width: 880px;
+  }
+  .kicker {
+    display: inline-block;
+    font-family: "Noto Sans SC", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 6px 14px;
+    margin-bottom: 26px;
+    font-weight: 500;
+  }
+  h1.title {
+    font-family: "Noto Serif SC", serif;
+    font-weight: 900;
+    font-size: clamp(34px, 5.2vw, 60px);
+    line-height: 1.18;
+    letter-spacing: 0.02em;
+    margin: 0 0 18px;
+    color: var(--ink);
+  }
+  h1.title .em {
+    color: var(--accent);
+    font-style: normal;
+  }
+  .subtitle {
+    font-family: "Noto Sans SC", sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: 0;
+  }
+  .title-rule {
+    margin: 30px auto 0;
+    width: 64px;
+    height: 2px;
+    background: var(--ink);
+  }
+
+  /* ========== Lead / deck ========== */
+  .deck {
+    max-width: 760px;
+    margin: 36px auto 0;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.9;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .deck::before, .deck::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--ink);
+    margin: 0 auto;
+    opacity: 0.5;
+  }
+  .deck::before { margin-bottom: 18px; }
+  .deck::after { margin-top: 18px; }
+
+  /* ========== Two-column body ========== */
+  .body {
+    margin-top: 60px;
+    column-count: 2;
+    column-gap: 44px;
+    column-rule: 1px solid var(--line);
+  }
+  @media (max-width: 860px) {
+    .body { column-count: 1; }
+    .page { padding: 32px 22px 64px; }
+  }
+
+  h2.section {
+    font-family: "Noto Serif SC", serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.4;
+    margin: 30px 0 16px;
+    color: var(--ink);
+    break-after: avoid;
+    break-inside: avoid;
+    page-break-after: avoid;
+  }
+  h2.section .num {
+    display: inline-block;
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    color: var(--accent);
+    margin-right: 10px;
+    font-size: 28px;
+    vertical-align: -2px;
+  }
+  h2.section::after {
+    content: "";
+    display: block;
+    width: 36px;
+    height: 2px;
+    background: var(--accent);
+    margin-top: 10px;
+  }
+
+  p {
+    margin: 0 0 16px;
+    text-align: justify;
+    text-justify: inter-character;
+    color: var(--ink-soft);
+  }
+
+  /* drop cap on first paragraph of first section */
+  .body p.lede::first-letter {
+    font-family: "Noto Serif SC", serif;
+    font-weight: 900;
+    font-size: 56px;
+    line-height: 0.9;
+    float: left;
+    margin: 6px 10px 0 0;
+    color: var(--accent);
+  }
+
+  .pull {
+    break-inside: avoid;
+    font-family: "Noto Serif SC", serif;
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 1.55;
+    color: var(--ink);
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 18px 0;
+    margin: 14px 0 22px;
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+  .pull .q {
+    color: var(--accent);
+    font-size: 26px;
+    line-height: 0;
+    vertical-align: -4px;
+    margin: 0 4px;
+  }
+
+  /* ========== Figures ========== */
+  figure.fig {
+    break-inside: avoid;
+    margin: 22px 0 26px;
+    background: #fffaf0;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    padding: 14px 14px 12px;
+    border-radius: 2px;
+  }
+  figure.fig.wide {
+    /* break out of column */
+    column-span: all;
+    margin: 32px 0;
+  }
+  figure.fig img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+  }
+  figcaption {
+    margin-top: 10px;
+    font-family: "Noto Sans SC", sans-serif;
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+  figcaption .tag {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    font-weight: 700;
+    padding: 2px 8px;
+    margin-right: 8px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+  }
+
+  /* ========== Callout box ========== */
+  .callout {
+    break-inside: avoid;
+    background: var(--paper-deep);
+    border-left: 4px solid var(--accent);
+    padding: 16px 18px;
+    margin: 18px 0 22px;
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+  .callout .label {
+    display: block;
+    font-family: "Noto Sans SC", sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  /* ========== Stats row ========== */
+  .stats {
+    column-span: all;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin: 36px 0 36px;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    background: #fffaf0;
+  }
+  .stats .cell {
+    padding: 22px 18px;
+    text-align: center;
+    border-right: 1px solid var(--line);
+  }
+  .stats .cell:last-child { border-right: none; }
+  .stats .num {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 36px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stats .lbl {
+    font-family: "Noto Sans SC", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+  @media (max-width: 720px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stats .cell:nth-child(2) { border-right: none; }
+    .stats .cell:nth-child(1), .stats .cell:nth-child(2) { border-bottom: 1px solid var(--line); }
+  }
+
+  /* ========== End matter ========== */
+  .end {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 1px solid var(--ink);
+    column-span: all;
+  }
+  .end h3 {
+    font-family: "Noto Sans SC", sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    color: var(--ink);
+    margin: 0 0 14px;
+  }
+  .end p {
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: var(--ink-soft);
+  }
+  .end .method {
+    margin-top: 22px;
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: var(--muted);
+    font-family: "Noto Sans SC", sans-serif;
+    border-top: 1px dashed var(--line);
+    padding-top: 16px;
+  }
+  .end .method strong { color: var(--ink-soft); }
+
+  /* ========== Footer signature ========== */
+  .colophon {
+    column-span: all;
+    margin-top: 48px;
+    text-align: center;
+    font-family: "Noto Sans SC", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    border-top: 3px double var(--ink);
+    padding-top: 14px;
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+
+    <!-- Masthead -->
+    <div class="masthead">
+      <div class="brand">高等教育观察 &nbsp;·&nbsp; HIGHER ED OBSERVER</div>
+      <div class="meta">数据观察 &nbsp;|&nbsp; ISSUE No.07 &nbsp;|&nbsp; 2026</div>
+    </div>
+
+    <!-- Title -->
+    <header class="title-block">
+      <span class="kicker">数 据 观 察 &nbsp; DATA REPORT</span>
+      <h1 class="title">从 <span class="em">3:1</span> 到 <span class="em">7:1</span><br/>五年高校专业数据里的人文位移</h1>
+      <p class="subtitle">2020—2024 年中国高校本科新增专业数据观察</p>
+      <div class="title-rule"></div>
+    </header>
+
+    <!-- Deck (导言) -->
+    <p class="deck">
+      五年间,全国高校每新增 1 个人文学科专业点, 就对应新增约 7 个理工科专业点。<br/>
+      这个比例在 2020 年还是 3:1。<br/>
+      更值得注意的是,新增最多的人文专业,不是文史哲,而是网络与新媒体和数字媒体艺术。
+    </p>
+
+    <!-- Body -->
+    <article class="body">
+
+      <h2 class="section"><span class="num">I.</span>五年,从 3:1 到 7:1</h2>
+      <p class="lede">2020 年,全国高校新增备案本科专业点 2834 个,其中理工农医类 1581 个,占 56%;文学、历史学、哲学、艺术学四类人文学科 513 个,占 18%。相当于每新增约 3 个理工科专业,对应 1 个人文专业。</p>
+      <p>到了 2024 年,新增总量降至 1996 个,但结构发生了显著偏移:理工农医 1341 个,占比升至 67%;人文仅 197 个,占比降至 10%。理工科与人文学科的新增比扩大到 <strong>6.8:1</strong>。五年间,人文的份额近乎腰斩。</p>
+
+      <figure class="fig wide">
+        <img src="七张图_按图几+表名命名/七张图_按图名命名/图1_2020—2024年高校新增专业门类占比变化.png" alt="2020—2024年高校新增专业门类占比变化" />
+        <figcaption><span class="tag">图 1</span>2020—2024 年三类学科新增专业占比变化。人文学科的份额从 18% 持续收窄至 10%。</figcaption>
+      </figure>
+
+      <p>2023 年是关键的转折年。这一年,教育部发布《普通高等学校学科专业设置调整优化改革方案》,要求到 2025 年优化调整高校 20% 左右的学科专业布点。当年新增总量从 2804 骤降至 1719,降幅 39%。2024 年回升至 1996,但人文学科并未同步恢复——新增量仅为 197 个,是五年最低。</p>
+
+      <!-- Stats Strip -->
+      <div class="stats">
+        <div class="cell"><div class="num">2834</div><div class="lbl">2020 新增总数</div></div>
+        <div class="cell"><div class="num">1996</div><div class="lbl">2024 新增总数</div></div>
+        <div class="cell"><div class="num">56% → 67%</div><div class="lbl">理工科占比</div></div>
+        <div class="cell"><div class="num">18% → 10%</div><div class="lbl">人文学科占比</div></div>
+      </div>
+
+      <h2 class="section"><span class="num">II.</span>被挤出的,主要是基础文科</h2>
+      <p>将人文学科拆开来看。艺术学是体量最大的子类,也是下降最剧烈的——从 2020 年的 321 个降至 2024 年的 90 个,降幅 72%。文学从 183 个降至 96 个,降幅 48%。</p>
+      <p>历史学和哲学的绝对数量一直很低。历史学五年合计仅 67 个新增,哲学 11 个。它们没有大降,不是因为抗跌,而是因为早已低到地板——<strong>跌无可跌</strong>。2023 年,哲学从 4 个直接归零。</p>
+
+      <figure class="fig">
+        <img src="七张图_按图几+表名命名/七张图_按图名命名/图2_人文学科四个子类年度新增专业数量.png" alt="人文学科四个子类年度新增专业数量" />
+        <figcaption><span class="tag">图 2</span>人文学科的四个子类分别统计的年度新增数量。艺术学和文学是下降的主体,历史学和哲学始终处于极低水平。</figcaption>
+      </figure>
+
+      <p>但另一个数据维度同样重要。五年累计新增最多的人文学科专业,第一是<strong>网络与新媒体(144 次)</strong>,第二是<strong>数字媒体艺术(97 次)</strong>。这两个专业在学科分类上分别属于文学和艺术学,但课程内容高度技术化——学的是内容运营、数据分析、交互设计。也就是说,新增的文科,正在变得越来越不像传统意义上的文科。</p>
+
+      <figure class="fig wide">
+        <img src="七张图_按图几+表名命名/七张图_按图名命名/图3_五年累计新增专业排名_理工科Top10与人文学科Top10.png" alt="五年累计新增专业排名" />
+        <figcaption><span class="tag">图 3</span>五年累计新增专业排名:理工科 Top10(左)与人文学科 Top10(右)。注意两个坐标轴的量级差异,以及人文学科榜单上清一色的应用型专业。</figcaption>
+      </figure>
+
+      <h2 class="section"><span class="num">III.</span>2023 年的压力测试:谁最先被放弃</h2>
+      <p>2023 年总量从 2804 降至 1719,整体降幅 39%。但不同学科的抗跌性差异显著。理工科降幅 34%,低于整体水平。社科降幅 42%,略高于整体。人文学科降幅 49%,远超整体。</p>
+
+      <p class="pull"><span class="q">「</span>当政策空间收紧,基础文科是高校最先放弃的选项。<span class="q">」</span></p>
+
+      <p>在人文学科内部,分化更为突出:文学降 45%,艺术学降 50%,历史学降 60%,哲学降 100%——从 4 个降至 0 个。</p>
+
+      <figure class="fig wide">
+        <img src="七张图_按图几+表名命名/七张图_按图名命名/图4_2023年各门类新增专业点降幅对比.png" alt="2023年各门类新增专业点降幅对比" />
+        <figcaption><span class="tag">图 4</span>2023 年政策冲击下各学科门类新增点降幅对比。虚线为整体降幅 39%。人文各子类均远高于此线,哲学更是降幅 100%。</figcaption>
+      </figure>
+
+      <figure class="fig">
+        <img src="七张图_按图几+表名命名/七张图_按图名命名/图5_人文四个子类五年新增数量轨迹.png" alt="人文四个子类五年新增数量轨迹" />
+        <figcaption><span class="tag">图 5</span>人文四个子类五年新增数量轨迹。历史学和哲学几乎始终贴地运行。</figcaption>
+      </figure>
+
+      <h2 class="section"><span class="num">IV.</span>理工科内部,也在新旧交替</h2>
+      <p>理工科新增总量从 1581 降至 1341,降幅不大。但内部正在进行一轮更替:智能制造工程从 2020 年的 84 个降至 2024 年的 32 个,数据科学与大数据技术从 74 个降至 15 个。<strong>早期热门工科正在降温。</strong></p>
+      <p>与此同时,智能建造从 23 个翻倍至 49 个,集成电路设计与集成系统从 10 个增长至 31 个,机器人工程在 2023 年触底后反弹至 32 个。人工智能在经历了 2023 年的低谷(38 个)后,2024 年回升至 91 个。即使在资源最充沛的理工科内部,一个专业从热到冷,可能只需要两三年。</p>
+
+      <div class="callout">
+        <span class="label">KEY DATA · 关键数据</span>
+        人工智能 2023 年降至 38 个,2024 年回升至 91 个——一个完整的 V 型走势,从过热、骤冷到再启动,只用了两年。
+      </div>
+
+      <figure class="fig wide">
+        <img src="七张图_按图几+表名命名/七张图_按图名命名/图6_五个代表性理工科专业五年新增轨迹.png" alt="五个代表性理工科专业五年新增轨迹" />
+        <figcaption><span class="tag">图 6</span>五个代表性理工科专业五年新增轨迹。智能建造和集成电路持续上涨,智能制造和数据科学明显下滑,人工智能呈 V 型走势。</figcaption>
+      </figure>
+
+      <h2 class="section"><span class="num">V.</span>地图上的文科荒漠</h2>
+      <p>2024 年,有六个省份人文学科新增为零:江苏、安徽、福建、广西、山西、江西。另有七个省份仅新增 1 至 2 个人文专业。</p>
+      <p>北京(11 个人文新增)和辽宁(5 个)是少数仍保持相对均衡的省份。北京拥有大量部属综合大学和顶尖艺术院校,辽宁则有传统的师范类和文科院校——<strong>机构的存量,决定了新增的结构</strong>。</p>
+
+      <figure class="fig wide">
+        <img src="七张图_按图几+表名命名/七张图_按图名命名/图7_“文科”内部的分化_应用型与基础型.png" alt="“文科”内部的分化" />
+        <figcaption><span class="tag">图 7</span>"文科"内部的分化:应用型与基础型。基础型文科五年间几乎始终为零轴。</figcaption>
+      </figure>
+
+      <div class="callout">
+        <span class="label">编者提示</span>
+        各省新增总量的样本量较小(多数省份全年新增总数仅十几至几十个专业点),省际差异的意义不宜过度解读。但江苏、安徽等省份的人文零新增,仍然构成了一个值得关注的信号。
+      </div>
+
+      <h2 class="section"><span class="num">VI.</span>"文科"这个词,正在被改写</h2>
+      <p>如果我们将人文学科的新增分为<strong>应用型</strong>(设计、新媒体、广告等)和<strong>基础型</strong>(历史学、哲学、古典文献学等),两条线的走势截然不同。应用型文科从 2020 年的 195 个降至 2024 年的 43 个——降幅很大,但绝对值仍远高于基础型文科。基础型文科从 12 个到 24 个,始终是一条贴地直线。</p>
+      <p>所谓文科新增,实质上是应用型文科的新增。基础文科在整个五年数据中几乎不构成有效的统计信号。当<em>网络与新媒体</em>取代<em>汉语言文学</em>成为文科新增的主力,"文科"这个词本身的含义,正在被悄然改写。</p>
+
+      <!-- End matter -->
+      <section class="end">
+        <h3>余 论 · EPILOGUE</h3>
+        <p>这组数据不提供价值判断。它不主张文科无用,也不呼吁保护文科。它只是呈现一个正在发生的事实:在过去五年的中国高校专业调整中,人文学科的新增空间被系统性压缩,且这种压缩并非均匀分布——基础文科的存在感尤其微弱,而即使是被保留下来的文科,也更多是面向就业市场的应用型专业。</p>
+        <p style="text-align:center; font-size:17px; color:var(--ink);"><strong>从 3:1 到 7:1,数字的位移背后是方向的位移。</strong>这种位移是否合理,需要更多的讨论。但这种位移本身,值得被看到。</p>
+
+        <div class="method">
+          <p><strong>数据来源:</strong>教育部 2020—2024 年度《普通高等学校本科专业备案和审批结果》。</p>
+          <p><strong>统计范围:</strong>新增备案专业点(不含审批专业及撤销专业)。覆盖全国 31 个省、自治区、直辖市高校。因数据源限制,台湾地区数据暂缺。</p>
+          <p><strong>分析方法:</strong>本报告基于对五年间 12,166 条新增备案专业记录的整理与分类统计,学科门类划分依据教育部《普通高等学校本科专业目录》分类标准。</p>
+        </div>
+      </section>
+
+      <div class="colophon">
+        HIGHER ED OBSERVER &nbsp;·&nbsp; 高等教育观察 &nbsp;·&nbsp; © 2026
+      </div>
+    </article>
+  </main>
+</body>
+</html>
